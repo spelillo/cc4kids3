@@ -1,0 +1,81 @@
+<!-- checkout.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout – Canine Crew 4 Kids</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background-color: #fff;
+      padding: 30px;
+      max-width: 700px;
+      margin: auto;
+      color: #333;
+    }
+
+    h1 {
+      color: #22c55e;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #22c55e;
+      color: white;
+      font-weight: bold;
+      padding: 12px 24px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Checkout</h1>
+  <p>You're purchasing <strong>Shep Learns a Lesson</strong> for <strong>$14.99</strong>.</p>
+
+  <form onsubmit="return confirm('Thank you! Your order has been submitted.')">
+    <label>Full Name</label>
+    <input type="text" name="name" required />
+
+    <label>Billing Address</label>
+    <textarea name="address" rows="3" required></textarea>
+
+    <label>City</label>
+    <input type="text" name="city" required />
+
+    <label>State</label>
+    <input type="text" name="state" required />
+
+    <label>Zip Code</label>
+    <input type="text" name="zip" required />
+
+    <label>Credit Card Number</label>
+    <input type="text" name="cc" required />
+
+    <label>Expiration Date</label>
+    <input type="text" name="exp" placeholder="MM/YY" required />
+
+    <label>CVV</label>
+    <input type="text" name="cvv" required />
+
+    <button type="submit">Submit Order</button>
+  </form>
+
+</body>
+</html>
