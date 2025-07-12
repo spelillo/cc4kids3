@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Miss Christine's Books</title>
+  <style>
+    body {
+      font-family: 'Quicksand', 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      background: #f6fbff;
+      color: #2a3a4a;
+    }
+    header {
+      background: linear-gradient(120deg, #b3d8fd 0%, #f6fbff 100%);
+      color: #2a3a4a;
+      padding: 2.5rem 1rem 1.5rem 1rem;
+      text-align: center;
+      border-bottom-left-radius: 2rem;
+      border-bottom-right-radius: 2rem;
+      box-shadow: 0 4px 16px #b3d8fd80;
+    }
+    nav {
+      background: #e3f1fb;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 0.7rem 0;
+      border-radius: 0 0 1.5rem 1.5rem;
+      box-shadow: 0 2px 8px #b3d8fd80;
+      margin-bottom: 1.5rem;
+    }
+    nav a {
+      color: #2a3a4a;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border-radius: 1.2rem;
+      padding: 0.4rem 1.1rem;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+    nav a:hover, nav a.active {
+      background: #ffe0e9;
+      color: #d72660;
+      box-shadow: 0 2px 8px #f8cdd1a0;
+    }
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: #fff;
+      border-radius: 2rem;
+      box-shadow: 0 4px 24px #b3d8fd80;
+      padding: 2.5rem 1.5rem;
+    }
+    .book-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      align-items: center;
+      justify-content: center;
+    }
+    .book-section img {
+      max-width: 220px;
+      border-radius: 1.5rem;
+      box-shadow: 0 4px 16px #b3d8fd80;
+      border: 4px solid #ffe0e9;
+      background: #e3f1fb;
+    }
+    .book-section h2 {
+      color: #2a3a4a;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    .reviews {
+      margin: 2.5rem 0;
+    }
+    .review {
+      background: #e3f1fb;
+      border-left: 6px solid #d72660;
+      margin-bottom: 1.2rem;
+      padding: 1.2rem;
+      border-radius: 1.2rem;
+      font-size: 1.1rem;
+      color: #2a3a4a;
+      box-shadow: 0 2px 8px #b3d8fd80;
+    }
+    .subscribe {
+      background: #ffe0e9;
+      padding: 2rem;
+      border-radius: 1.5rem;
+      margin: 2.5rem 0;
+      text-align: center;
+      box-shadow: 0 2px 8px #b3d8fd80;
+    }
+    .subscribe input[type=email] {
+      padding: 0.7rem;
+      border-radius: 1rem;
+      border: 1px solid #b3d8fd;
+      margin-right: 0.7rem;
+      font-size: 1rem;
+    }
+    .subscribe button {
+      background: #2a90e6;
+      color: #fff;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 1rem;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .subscribe button:hover {
+      background: #d72660;
+    }
+    .section-title {
+      color: #2a90e6;
+      margin-top: 2rem;
+      font-size: 2rem;
+      font-family: 'Quicksand', 'Segoe UI', Arial, sans-serif;
+    }
+    footer {
+      background: #e3f1fb;
+      color: #2a3a4a;
+      text-align: center;
+      padding: 1.2rem 0;
+      margin-top: 2.5rem;
+      border-top-left-radius: 2rem;
+      border-top-right-radius: 2rem;
+      box-shadow: 0 -2px 8px #b3d8fd80;
+    }
+    .socials a {
+      color: #2a90e6;
+      margin: 0 0.7rem;
+      font-size: 1.5rem;
+      transition: color 0.2s;
+    }
+    .socials a:hover {
+      color: #d72660;
+    }
+    input, textarea, button {
+      font-family: inherit;
+    }
+    .site-section {
+      animation: fadeIn 0.7s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 700px) {
+      main { padding: 1rem; }
+      .book-section { flex-direction: column; align-items: flex-start; }
+      header { padding: 1.5rem 0.5rem 1rem 0.5rem; }
+      nav { flex-wrap: wrap; gap: 0.7rem; }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div style="display: flex; align-items: center; justify-content: center; gap: 1rem;">
+      <div style="flex:1;"></div>
+      <div>
+        <h1 style="margin:0; font-family: 'Dancing Script', cursive; font-size:2.7rem; color:#d72660; letter-spacing:1px; text-shadow:0 2px 8px #f8cdd1a0;">Miss Christine’s Story Books</h1>
+        <p style="margin:0; font-family: 'Dancing Script', cursive; font-size:1.5rem; color:#2a90e6; letter-spacing:0.5px; text-shadow:0 1px 4px #b3d8fd80;">Empowering Stories for Children by Christine M. Pelillo</p>
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+      </div>
+      <div style="flex:1; display: flex; justify-content: flex-end; align-items: center; gap:1rem;">
+        <a href="#cart" title="Shopping Cart" style="color:#fff; font-size:1.7rem; margin-left:1rem;">
+          <i class="fas fa-shopping-cart"></i>
+        </a>
+        <a href="#checkout" onclick="showSection('checkout')" title="Checkout" style="color:#fff; font-size:1.7rem;">
+          <i class="fas fa-credit-card"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+  <nav>
+    <a href="#home" onclick="showSection('home')">Home</a>
+    <a href="#products" onclick="showSection('products')">Products</a>
+    <a href="#canine-crew" onclick="showSection('canine-crew')">The Canine Crew</a>
+    <a href="#about" onclick="showSection('about')">About Us</a>
+    <a href="#contact" onclick="showSection('contact')">Contact Us</a>
+    <a href="#checkout" onclick="showSection('checkout')">Checkout</a>
+  </nav>
+<main>
+    <section id="home" class="site-section">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:2.5rem;justify-content:center;">
+        <div style="flex:1;min-width:260px;max-width:340px;text-align:center;">
+          <img src="/static/sheplearnslesson.avif" alt="Shep Learns A Lesson Book Cover" style="width:100%;max-width:320px;border-radius:1.5rem;box-shadow:0 4px 16px #b3d8fd80;border:4px solid #ffe0e9;background:#e3f1fb;cursor:pointer;" onclick="showSection('checkout')">
+          <div style="margin-top:1rem;font-size:1.3rem;font-weight:700;">$14.99 <span style="font-weight:400;">Price</span></div>
+          <button onclick="showSection('checkout')" style="margin-top:1rem;background:#2a90e6;color:#fff;padding:0.7rem 1.5rem;border:none;border-radius:1rem;cursor:pointer;font-size:1rem;font-weight:600;transition:background 0.2s;">View Details</button>
+        </div>
+        <div style="flex:2;min-width:260px;max-width:500px;">
+          <h2 style="color:#2a90e6;margin-bottom:0.5rem;">Shep Learns A Lesson</h2>
+          <p>"Shep Learns A Lesson" came to life as a passion project when my first rescue dog, Chevy, passed away. As I was brainstorming ways to hold onto the precious memories with Chevy, writing a book became the perfect answer! Throughout the story, four dogs navigate through big emotions and even an injury, and figure out how to become friends through courage, kindness, empathy and facing their fears.</p>
+        </div>
+      </div>
+      <div class="reviews" style="margin-top:2.5rem;">
+        <h3 style="color:#2a90e6;">Reader's Reviews</h3>
+        <div class="review">“Miss Christine's storytelling is captivating and full of valuable life lessons for kids. Shep Learns A Lesson is a must-read for every child!”<br><em>– Jasmine Ward, Kids' Book Reviewer</em></div>
+        <div class="review">“As an educator, I highly recommend Shep Learns A Lesson for its powerful messages on empathy, courage, and friendship. Miss Christine's book is a gem in children's literature.”<br><em>– Alison Green, Education Specialist</em></div>
+        <div class="review">“Shep Learns A Lesson is a heartwarming tale that resonates with both children and adults. Miss Christine's ability to convey important life values through storytelling is remarkable.”<br><em>– Sam Donald, Parent & Reader</em></div>
+      </div>
+    </section>
+    <section id="products" class="site-section" style="display:none;">
+      <div class="book-section">
+        <img src="/static/sheplearnslesson.avif" alt="Shep Learns A Lesson book cover">
+        <div>
+          <h2>Shep Learns A Lesson</h2>
+          <p><strong>Price:</strong> $14.99</p>
+          <p>Inspired by her first rescue dog, Chevy, this debut children’s book follows four canine friends as they learn about courage, kindness, empathy, and friendship while healing after injury.</p>
+          <button onclick="showSection('checkout')" style="background:#6a8caf;color:#fff;padding:0.5rem 1.2rem;border:none;border-radius:4px;cursor:pointer;">Buy Now</button>
+        </div>
+      </div>
+    </section>
+    <section id="canine-crew" class="site-section" style="display:none;">
+      <h2 class="section-title" style="text-align:center;">The Canine Crew</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 2.5rem; justify-content: center; align-items: stretch;">
+        <div style="background:#fff; border-radius:1.5rem; box-shadow:0 2px 8px #b3d8fd80; padding:1.5rem; max-width:340px; min-width:260px; flex:1 1 300px; display:flex; flex-direction:column; align-items:center; height:100%;">
+          <img src="/static/chevy.avif" alt="Chevy the leader" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:1rem; margin-bottom:1rem; background:#e3f1fb; border:3px solid #ffe0e9;">
+          <h3 style="color:#2a90e6; margin:0 0 0.5rem 0;">🐶 Meet Chevy  🐾</h3>
+          <p style="text-align:center;">Chevy is the leader of the Canine Crew with a nose for adventure and a heart full of care! She's always ready to help others—especially when someone is learning an important life lesson.</p>
+          <ul style="list-style:none; padding:0; margin:1rem 0 0 0; text-align:left;">
+            <li>🧠 Thinking before acting</li>
+            <li>❤️ Being a good friend</li>
+            <li>🎯 Helping others learn from mistakes</li>
+          </ul>
+          <p style="margin-top:1rem; text-align:center;">Chevy believes that every day is a chance to learn something new—and to be your best self!</p>
+        </div>
+        <div style="background:#fff; border-radius:1.5rem; box-shadow:0 2px 8px #b3d8fd80; padding:1.5rem; max-width:340px; min-width:260px; flex:1 1 300px; display:flex; flex-direction:column; align-items:center; height:100%;">
+          <img src="/static/goldie.avif" alt="Goldie the Golden Retriever" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:1rem; margin-bottom:1rem; background:#e3f1fb; border:3px solid #ffe0e9;">
+          <h3 style="color:#d72660; margin:0 0 0.5rem 0;">🐕 Meet Goldie the Golden Retriever ✨</h3>
+          <p style="text-align:center;">Goldie is a gentle, golden-hearted dog who shines with kindness and wisdom. She’s like the big sister of the group—calm, caring, and always ready with a helpful word or a comforting nudge.</p>
+          <ul style="list-style:none; padding:0; margin:1rem 0 0 0; text-align:left;">
+            <li>💛 Helping others solve problems</li>
+            <li>🌼 Playing gently with younger animals</li>
+            <li>🧠 Teaching by example — she shows how to do the right thing, even when it's hard!</li>
+          </ul>
+          <p style="margin-top:1rem; font-style:italic; color:#2a90e6; text-align:center;">Goldie’s Motto:<br>“Kindness always leads the way.”</p>
+        </div>
+        <div style="background:#fff; border-radius:1.5rem; box-shadow:0 2px 8px #b3d8fd80; padding:1.5rem; max-width:340px; min-width:260px; flex:1 1 300px; display:flex; flex-direction:column; align-items:center; height:100%;">
+          <img src="/static/toby.avif" alt="Toby the Timid Mutt" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:1rem; margin-bottom:1rem; background:#e3f1fb; border:3px solid #ffe0e9;">
+          <h3 style="color:#2a90e6; margin:0 0 0.5rem 0;">💙 Meet Toby the Timid Mutt 🐾</h3>
+          <p style="text-align:center;">Toby is a sweet, gentle pup with big eyes and a bigger heart. He’s a little shy and sometimes nervous, but he’s learning every day that it’s okay to be scared—and that brave doesn't mean loud, it means trying your best, even when it’s hard.</p>
+          <p style="text-align:center;">Sometimes Toby needs a moment to think or a safe space to calm down—and that’s totally okay! He reminds us that everyone has their own way of being brave.</p>
+          <ul style="list-style:none; padding:0; margin:1rem 0 0 0; text-align:left;">
+            <li>🧸 Quiet corners and soft blankets</li>
+            <li>📚 Listening to stories (he's a great listener!)</li>
+            <li>🌈 Friends who help him feel safe and included</li>
+          </ul>
+        </div>
+        <div style="background:#fff; border-radius:1.5rem; box-shadow:0 2px 8px #b3d8fd80; padding:1.5rem; max-width:340px; min-width:260px; flex:1 1 300px; display:flex; flex-direction:column; align-items:center; height:100%;">
+          <img src="/static/shep.avif" alt="Shep" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:1rem; margin-bottom:1rem; background:#e3f1fb; border:3px solid #ffe0e9;">
+          <h3 style="color:#d72660; margin:0 0 0.5rem 0;">🐕 Meet Shep! 🌟</h3>
+          <p style="text-align:center;">Shep is a lively, curious dog who’s still learning how to be the best friend he can be. Sometimes Shep gets a little too excited or forgets to think before he acts — but that’s okay!</p>
+          <ul style="list-style:none; padding:0; margin:1rem 0 0 0; text-align:left;">
+            <li>🎾 Playing with his friends</li>
+            <li>🐾 Exploring new places</li>
+            <li>💡 Figuring out how to do better every day</li>
+          </ul>
+          <p style="margin-top:1rem; text-align:center;">When Shep realizes he’s made a mistake, he takes a deep breath and listens to his friends like Goldie, Chevy, and Toby. With their help, he learns important lessons about kindness, patience, and being a good friend.</p>
+        </div>
+      </div>
+    </section>
+    <section id="contact" class="site-section" style="display:none;">
+      <h2 class="section-title">Contact Us</h2>
+      <form onsubmit="event.preventDefault();alert('Thank you for reaching out!');">
+        <input type="text" placeholder="Your Name" required style="margin-bottom:0.5rem;display:block;">
+        <input type="email" placeholder="Your Email" required style="margin-bottom:0.5rem;display:block;">
+        <textarea placeholder="Your Message" required style="margin-bottom:0.5rem;display:block;width:100%;"></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </section>
+    
+    <section id="reviews" class="reviews site-section" style="display:none;">
+      <h2 class="section-title">Reviews & Accolades</h2>
+      <div class="review">“Miss Christine's storytelling is captivating and full of valuable life lessons for kids.”<br><em>– Jasmine Ward</em></div>
+      <div class="review">“As an educator, I highly recommend Shep Learns A Lesson for its powerful messages on empathy, courage, and friendship.”<br><em>– Alison Green</em></div>
+      <div class="review">“Shep Learns A Lesson is a heartwarming tale that resonates with both children and adults.”<br><em>– Sam Donald</em></div>
+    </section>
+    <section id="subscribe" class="subscribe site-section" style="display:none;">
+      <h2>Subscribe to Miss Christine’s Newsletter</h2>
+      <form onsubmit="event.preventDefault();alert('Thank you for subscribing!');">
+        <input type="email" placeholder="Your email address" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </section>
+    <section id="about" class="site-section" style="display:none;">
+      <h2 class="section-title" style="text-align:center;">About Us</h2>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:2rem;justify-content:center;">
+        <img src="/static/chrstine.avif" alt="Christine M. Pelillo" style="max-width:480px;width:100%;border-radius:1.5rem;box-shadow:0 4px 16px #b3d8fd80;border:4px solid #ffe0e9;background:#e3f1fb;display:block;margin-bottom:1.5rem;">
+        <div style="max-width:700px;text-align:center;">
+          <p><strong>- Miss Christine, Children's Author & Educator -</strong></p>
+          <p>Welcome to the world of storytelling and education! I am dedicated to creating engaging and impactful content for children, using my experience as an educator and a passion for writing. Through my books, I aim to inspire young minds and foster a love for reading and learning.</p>
+        </div>
+        <img src="/static/family.avif" alt="Miss Christine and Family" style="max-width:480px;width:100%;border-radius:1.5rem;box-shadow:0 4px 16px #b3d8fd80;border:4px solid #ffe0e9;background:#e3f1fb;display:block;margin-bottom:1.5rem;">
+        <div style="max-width:700px;text-align:center;">
+          <h3 style="color:#2a90e6;margin-bottom:0.5rem;">More About Miss Christine</h3>
+          <p>I am a passionate educator, author, philanthropist in action, and active volunteer for the TN HABIT Program (Human-Animal Bond in Tennessee), along with my beloved rescue dog, Finn. I am an ardent supporter for the well-being of both children and dogs alike. Educating children for over 30 years gave me the insight I needed to fulfill a lifelong dream: to write & publish a children's book!</p>
+        </div>
+      </div>
+    </section>
+    <section id="checkout" class="site-section" style="display:none;text-align:center;">
+        <h2 class="section-title">Checkout</h2>
+        <img src="/static/sheplearnslesson.avif" alt="Shep Learns A Lesson Book Cover" style="width:100%;max-width:220px;border-radius:1.5rem;box-shadow:0 4px 16px #b3d8fd80;border:4px solid #ffe0e9;background:#e3f1fb;margin-bottom:1.5rem;">
+        <div style="font-size:1.3rem;font-weight:700;">$14.99 <span style="font-weight:400;">Price</span></div>
+        <form id="checkout-form" style="margin:2rem auto;max-width:340px;text-align:left;">
+            <label>Name<br><input type="text" required style="width:100%;padding:0.7rem;border-radius:1rem;border:1px solid #b3d8fd;margin-bottom:1rem;"></label><br>
+            <label>Email<br><input type="email" required style="width:100%;padding:0.7rem;border-radius:1rem;border:1px solid #b3d8fd;margin-bottom:1rem;"></label><br>
+            <label>Address<br>
+                <input type="text" required style="width:100%;padding:0.7rem;border-radius:1rem;border:1px solid #b3d8fd;margin-bottom:1rem;">
+            </label><br>
+            <div style="display:flex;gap:0.7rem;margin-bottom:1rem;">
+                <label style="flex:2;">
+                    City<br>
+                    <input type="text" required style="width:100%;padding:0.7rem;border-radius:1rem;border:1px solid #b3d8fd;">
+                </label>
+                <label style="flex:1;">
+                    State<br>
+                    <select required style="width:100%;padding:0.7rem;border-radius:1rem;border:1px solid #b3d8fd;">
+                        <option value="">State</option>
+                        <option value="AL">AL</option>
+                        <option value="AK">AK</option>
+                        <option value="AZ">AZ</option>
+                        <option value="AR">AR</option>
+                        <option value="CA">CA</option>
+                        <option value="CO">CO</option>
+                        <option value="CT">CT</option>
+                        <option value="DE">DE</option>
+                        <option value="FL">FL</option>
+                        <option value="GA">GA</option>
+                        <option value="HI">HI</option>
+                        <option value="ID">ID</option>
+                        <option value="IL">IL</option>
+                        <option value="IN">IN</option>
+                        <option value="IA">IA</option>
+                        <option value="KS">KS</option>
+                        <option value="KY">KY</option>
+                        <option value="LA">LA</option>
+                        <option value="ME">ME</option>
+                        <option value="MD">MD</option>
+                        <option value="MA">MA</option>
+                        <option value="MI">MI</option>
+                        <option value="MN">MN</option>
+                        <option value="MS">MS</option>
+                        <option value="MO">MO</option>
+                        <option value="MT">MT</option>
+                        <option value="NE">NE</option>
+                        <option value="NV">NV</option>
+                        <option value="NH">NH</option>
+                        <option value="NJ">NJ</option>
+                        <option value="NM">NM</option>
+                        <option value="NY">NY</option>
+                        <option value="NC">NC</option>
+                        <option value="ND">ND</option>
+                        <option value="OH">OH</option>
+                        <option value="OK">OK</option>
+                        <option value="OR">OR</option>
+                        <option value="PA">PA</option>
+                        <option value="RI">RI</option>
+                        <option value="SC">SC</option>
+                        <option value="SD">SD</option>
+                        <option value="TN">TN</option>
+                        <option value="TX">TX</option>
+                        <option value="UT">UT</option>
+                        <option value="VT">VT</option>
+                        <option value="VA">VA</option>
+                        <option value="WA">WA</option>
+                        <option value="WV">WV</option>
+                        <option value="WI">WI</option>
+                        <option value="WY">WY</option>
+                    </select>
+                </label>
+            </div>
+            <label>Zip<br>
+                <input type="text" required style="width:48%;padding:0.7rem;border-radius:1rem;border:1px solid #b3d8fd;margin-bottom:1rem;">
+            </label><br>
+            <label>Payment Method<br>
+                <select id="payment-method" required style="width:100%;padding:0.7rem;border-radius:1rem;border:1px solid #b3d8fd;margin-bottom:1rem;">
+                    <option value="">Select</option>
+                    <option value="credit">Credit Card</option>
+                    <option value="paypal">PayPal</option>
+                </select>
+            </label><br>
+            <div id="credit-fields" style="display:none;">
+                <label>Card Number<br><input type="text" maxlength="19" pattern="\d{13,19}" placeholder="1234 5678 9012 3456" style="width:100%;padding:0.7rem;border-radius:1rem;border:1px solid #b3d8fd;margin-bottom:1rem;"></label><br>
+                <label>Expiration Date<br><input type="text" maxlength="5" pattern="\d{2}/\d{2}" placeholder="MM/YY" style="width:100%;padding:0.7rem;border-radius:1rem;border:1px solid #b3d8fd;margin-bottom:1rem;"></label><br>
+                <label>CVV<br><input type="text" maxlength="4" pattern="\d{3,4}" placeholder="CVV" style="width:100%;padding:0.7rem;border-radius:1rem;border:1px solid #b3d8fd;margin-bottom:1rem;"></label><br>
+            </div>
+            <div id="paypal-fields" style="display:none;">
+                <label>PayPal Email<br><input type="email" placeholder="PayPal Email" style="width:100%;padding:0.7rem;border-radius:1rem;border:1px solid #b3d8fd;margin-bottom:1rem;"></label><br>
+            </div>
+            <button type="submit" style="background:#2a90e6;color:#fff;padding:0.7rem 1.5rem;border:none;border-radius:1rem;cursor:pointer;font-size:1rem;font-weight:600;transition:background 0.2s;width:100%;">Complete Purchase</button>
+        </form>
+        <p style="color:#888;font-size:0.95rem;">(This is a demo checkout form. No real payment will be processed.)</p>
+    </section>
+</main>
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.site-section').forEach(sec => sec.style.display = 'none');
+      const section = document.getElementById(id);
+      if(section) {
+        section.style.display = '';
+        // Add fade-in effect
+        section.classList.remove('fade');
+        void section.offsetWidth; // trigger reflow
+        section.classList.add('fade');
+      }
+      // Optionally scroll to top
+      window.scrollTo({top:0,behavior:'smooth'});
+      // Highlight active nav
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      const nav = document.querySelector(`nav a[href="#${id}"]`);
+      if(nav) nav.classList.add('active');
+    }
+    // Show home by default
+    showSection('home');
+    // Show/hide payment fields based on selection (moved from inside checkout section)
+    document.addEventListener('DOMContentLoaded', function() {
+      var paymentSelect = document.getElementById('payment-method');
+      if (!paymentSelect) return;
+      var creditFields = document.getElementById('credit-fields');
+      var paypalFields = document.getElementById('paypal-fields');
+      paymentSelect.addEventListener('change', function() {
+        if (this.value === 'credit') {
+          creditFields.style.display = '';
+          paypalFields.style.display = 'none';
+        } else if (this.value === 'paypal') {
+          creditFields.style.display = 'none';
+          paypalFields.style.display = '';
+        } else {
+          creditFields.style.display = 'none';
+          paypalFields.style.display = 'none';
+        }
+      });
+    });
+  </script>
+  <footer>
+    <div class="socials">
+      <a href="https://facebook.com" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>&copy; 2025 Miss Christine’s Books. All rights reserved.</p>
+  </footer>
+</body>
+</html>
